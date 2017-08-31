@@ -1,1 +1,14 @@
 Fullstack Founder Factory Website & Application Code Repository
+
+How to get this repo working:
+
+1- Download this repo to your computer at the Home directory ('~/' on Mac or C:/Windows/Users/[your-name]/ on Windows).
+2- You need 'Java 8' (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), 'mySQL' (https://dev.mysql.com/downloads/mysql/), and 'sbt' (http://www.scala-sbt.org/download.html) installed on your computer. Download and install them from the links provided if you don't have them.
+3- You need to install bower (https://bower.io/).
+4- You need to run 'bower install' in your terminal / command prompt to download some necessary javascript libraries.
+5- You need to create a new database in mySQL called "fullstackcoding".
+6- You need to run "./activator" in your terminal on Mac or "sbt" in your command prompt on Windows. Wait for it to work.
+7- Then type "compile" and wait for it to finish compiling.
+8- Then type "run" and it will tell you it's listening to port 9000, which means you should open a browser and go to http://localhost:9000.
+
+Reach out with any questions.
