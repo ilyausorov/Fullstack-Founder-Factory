@@ -1,0 +1,158 @@
+# Routes
+# ~~~~
+
+# Application Main
+GET    /index                                                     controllers.Application.index
+GET    /langs                                                     controllers.Application.lang
+GET    /status                                                    controllers.Application.status
+GET    /js-routes                                                 controllers.Application.jsRoutes(page:String)
+
+# public ctrl
+GET    /                                                          controllers.PublicCtrl.index
+GET    /privacy                                                   controllers.PublicCtrl.privacy
+GET    /terms                                                     controllers.PublicCtrl.terms
+GET    /apply                                                     controllers.PublicCtrl.apply
+GET    /emaillogin                                                controllers.PublicCtrl.emaillogin
+GET    /faqs                                                   	  controllers.PublicCtrl.faqHtml
+
+GET    /modalTemplate                                             controllers.PublicCtrl.modalTemplate
+GET    /alertTemplate                                             controllers.PublicCtrl.alertTemplate
+GET    /promptTemplate                                            controllers.PublicCtrl.promptTemplate
+
+# Login/Logout
+GET   /login                                                      controllers.LoginCtrl.index
+POST  /login                                                      controllers.LoginCtrl.login
+GET   /logout                                                     controllers.LoginCtrl.logout
+POST  /signup                                                     controllers.LoginCtrl.signup
+GET   /redirect                                                   controllers.LoginCtrl.redirect(url: String)
+GET   /admin/login                                                controllers.LoginCtrl.indexAdmin
+GET   /profile                                                    controllers.LoginCtrl.profile
+POST  /profile/retrievePassword                                   controllers.LoginCtrl.askPasswordReset
+GET   /profile/retrievePassword/:id/:key                          controllers.LoginCtrl.passwordResetForm(id: Long, key: String)   
+POST  /user/name/update                                           controllers.LoginCtrl.changeUserName
+GET   /login/post                                                 controllers.LoginCtrl.loginPostAction 
+GET   /emailConfirm						  						  controllers.LoginCtrl.emailConfirm(id: Long, key: String)
+GET   /askemailConfirm						  					  controllers.LoginCtrl.askEmailConfirm
+
+# user extended
+GET   /profile/data                                               controllers.UserExtendedCtrl.detail
+POST  /profile/update                                             controllers.UserExtendedCtrl.update
+POST  /profile/updateAdmin/:ueid/:ceid/:uid                       controllers.UserExtendedCtrl.updatepAdmin(ueid: Long, ceid: Long, uid: Long)
+POST  /profile/updatep                                            controllers.UserExtendedCtrl.updatep
+POST  /profile/updateEmployer                                     controllers.UserExtendedCtrl.updateEmployer
+GET   /admin/userExtended/list                                    controllers.UserExtendedCtrl.listAdmin
+GET   /admin/userExtended/:id/detail                              controllers.UserExtendedCtrl.detailAdmin(id: Long)
+GET   /admin/userExtended/:id/detailcompany                       controllers.UserExtendedCtrl.detailCompanyAdmin(id: Long)
+POST  /admin/userExtended/insert                                  controllers.UserExtendedCtrl.insertAdmin
+POST  /admin.userExtended/:id/update                              controllers.UserExtendedCtrl.updateAdmin(id: Long)
+GET   /admin/userExtended/:id/delete                              controllers.UserExtendedCtrl.deleteAdmin(id: Long)
+
+# user mgmt ctrl stay over
+POST  /profile/username/update                                    user_management.user.controllers.UserManagementCtrl.changeUserName
+POST  /profile/password/update                                    user_management.user.controllers.UserManagementCtrl.changePassword
+POST  /user/add                                                   user_management.user.controllers.UserManagementCtrl.add
+POST  /user/add-with-company                                      user_management.user.controllers.UserManagementCtrl.addWithCompany
+POST  /user/status/change                                         user_management.user.controllers.UserManagementCtrl.changeStatus
+POST  /user/password/webservice/reset                             user_management.user.controllers.UserManagementCtrl.resetWebServicePassword
+POST  /user/password/reset                                        user_management.user.controllers.UserManagementCtrl.passwordReinit
+POST  /user/password/resetA/:id/:key                              user_management.user.controllers.UserManagementCtrl.reinitPassword(id:Long,key:String)
+POST  /user/delete                                                user_management.user.controllers.UserManagementCtrl.delete
+POST  /admin/user/:id/update                                      user_management.user.controllers.UserManagementCtrl.updateAdmin(id: Long)
+POST  /admin/user/:id/delete                                      user_management.user.controllers.UserManagementCtrl.deleteAdmin(id: Long)
+POST  /admin/user/password/:id/change                             user_management.user.controllers.UserManagementCtrl.changePasswordAdmin(id: Long)
+POST  /admin/user/password/:id/changeWebservice                   user_management.user.controllers.UserManagementCtrl.changeWebservicePasswordAdmin(id: Long)
+POST  /user/add                                                   user_management.user.controllers.UserManagementCtrl.add
+POST  /user/add-with-company                                      user_management.user.controllers.UserManagementCtrl.addWithCompany
+POST  /user/status/change                                         user_management.user.controllers.UserManagementCtrl.changeStatus
+GET   /user/find/:id/:key                                      	  user_management.user.controllers.UserManagementCtrl.findRestrictedUserByKey(id: Long, key: String)
+POST  /user/password/change                                       user_management.user.controllers.UserManagementCtrl.changePassword
+POST  /user/password/reset                                        user_management.user.controllers.UserManagementCtrl.resetPassword
+POST  /user/password/webservice/reset                             user_management.user.controllers.UserManagementCtrl.resetWebServicePassword
+POST  /user/delete                                                user_management.user.controllers.UserManagementCtrl.delete
+
+# User Permission
+POST  /permission/assign                                          user_management.user.controllers.PermissionCtrl.assign
+POST  /permission/revoke                                          user_management.user.controllers.PermissionCtrl.revoke
+
+## Newsletter
+POST   /newsletter                                                controllers.NewsletterCtrl.subscribe
+GET    /newsletter/:id/:key                                       controllers.NewsletterCtrl.changeStatus(id: Long, key: String)
+GET    /admin/newsletter/export                                   controllers.NewsletterCtrl.export
+
+# admin
+GET   /admin                                                      controllers.AdminCtrl.index
+
+# user ctrl
+GET   /admin/user                                                 controllers.UserCtrl.index
+GET   /admin/user/add                                             controllers.UserCtrl.add
+GET   /admin/user/edit                                            controllers.UserCtrl.edit
+GET   /admin/user/:id/edit                                        controllers.UserCtrl.editM(id: Long)
+GET   /user/detail                                                controllers.UserCtrl.detail
+GET   /user/detailCandidate/:candidate_id                         controllers.UserCtrl.detailCandidate(candidate_id: Long)
+POST  /admin/user/list                                            controllers.UserCtrl.listAdmin
+POST  /admin/user/:id/detail                                      controllers.UserCtrl.detailAdmin(id: Long)
+POST  /admin/user/:id/delete                                      controllers.UserCtrl.deleteAdmin(id: Long)
+GET   /admin/user/password/:id/generate                           controllers.UserCtrl.generatePasswordAdmin(id: Long)
+POST  /admin/user/insert                                          controllers.UserCtrl.insertAdmin
+GET  /user/find/:username                                         controllers.UserCtrl.findRestrictedUser(username: String)
+
+# admin usercompanyctrl
+GET   /user/company                                               controllers.UserCompanyCtrl.detail
+GET   /admin/userCompany/:id/list                                 controllers.UserCompanyCtrl.listing(id: Long)
+POST  /admin/userCompany/update                                   controllers.UserCompanyCtrl.update
+POST  /admin/userCompany/delete                                   controllers.UserCompanyCtrl.delete
+
+# admin company
+POST  /admin/company/list                                         controllers.CompanyCtrl.listAdmin
+GET   /admin/company/:id/detail                                   controllers.CompanyCtrl.detailAdmin(id: Long)
+POST  /admin/company/update                                       controllers.CompanyCtrl.insertAdmin
+POST  /admin/company/:id/update                                   controllers.CompanyCtrl.updateAdmin(id: Long)
+GET   /admin/company/delete                                       controllers.CompanyCtrl.deleteAdmin(id: Long)
+GET   /admin/company                                              controllers.CompanyCtrl.index
+GET   /admin/company/add                                          controllers.CompanyCtrl.add
+GET   /admin/company/edit                                         controllers.CompanyCtrl.edit
+GET   /admin/company/:id/edit                                     controllers.CompanyCtrl.editM(id: Long)
+
+# user pic
+POST /user/pic/insert/:type_id/:user_id                           controllers.UserPicCtrl.insert(user_id: Long, type_id: Long)
+GET  /user/pic/:id/:user_id                                       controllers.UserPicCtrl.serve(id: Long, user_id: Long, inline: Boolean ?= true)
+GET  /user/pic/delete/:id/:user_id                                controllers.UserPicCtrl.delete(id: Long, user_id: Long)
+POST /user/pic/insert/:type_id                                    controllers.UserPicCtrl.insertLogin(type_id: Long)
+GET  /user/pic/:id                                                controllers.UserPicCtrl.serveLogin(id: Long, inline: Boolean ?= true)
+GET  /user/pic/delete/:id                                         controllers.UserPicCtrl.deleteLogin(id: Long)
+
+# userfile
+POST /user/file/insert/:type_id/:user_id                          controllers.UserFileCtrl.insert(user_id: Long, type_id: Long)
+GET  /admin/user/file/:user_id                                    controllers.UserFileCtrl.serve(user_id: Long, inline: Boolean ?= true)
+GET  /user/file/delete/:id/:user_id                               controllers.UserFileCtrl.delete(id: Long, user_id: Long)
+GET  /user/filedownload/:id                                       controllers.UserFileCtrl.serveLogin(id: Long, inline: Boolean ?= true)
+GET  /user/file/delete/:id                                        controllers.UserFileCtrl.deleteLogin(id: Long)
+GET  /admin/user/file/:user_id/listing                            controllers.UserFileCtrl.listing(user_id: Long)
+
+# Permission
+GET   /permission/:id/list                                        user_management.user.controllers.PermissionCtrl.listWithAssign(id: Long)
+POST  /permission/assign                                          user_management.user.controllers.PermissionCtrl.assign
+POST  /permission/revoke                                          user_management.user.controllers.PermissionCtrl.revoke
+
+# Map static resources from the /public folder to the /assets URL path
+GET    /assets/*file                                              controllers.Assets.at(path="/public", file)
+
+#Application
+GET    /admin/applications										   controllers.ApplyCtrl.index
+GET    /application												   controllers.ApplyCtrl.application
+GET    /question_types											   controllers.ApplyCtrl.question_types
+GET    /application_headers										   controllers.ApplyCtrl.application_headers
+GET    /question_list/:name										   controllers.ApplyCtrl.question_list(name: String)
+POST   /application/update										   controllers.ApplyCtrl.update
+GET    /find_application_id/:email								   controllers.ApplyCtrl.find_application_id(email: String)
+GET    /thankyouemail/:email/:first_name						   controllers.ApplyCtrl.thankyouemail(email: String, first_name: String)
+GET    /admin/application/list							 		   controllers.ApplyCtrl.listAdmin
+GET    /admin/application/:id/delete							   controllers.ApplyCtrl.deleteAdmin(id: Long)
+GET    /admin/viewApplication								       controllers.ApplyCtrl.adminViewApplication
+GET    /admin/application/:id/detail							   controllers.ApplyCtrl.detailApplication(id: Long)
+GET    /admin/application/:id/updateRead						   controllers.ApplyCtrl.updateRead(id: Long)
+GET    /admin/application/:id/listAnswers						   controllers.ApplyCtrl.listAnswers(id: Long)
+
+#Calendar
+
+GET    /calendar                                                   controllers.CalendarCtrl.index

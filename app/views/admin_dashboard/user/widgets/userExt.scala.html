@@ -1,0 +1,19 @@
+@import common_components.form_components._
+@import common_components._
+@(id: Long)(implicit messages: play.api.i18n.Messages)
+
+<div ng-controller="userExtendedEditCtrl" ng-init="init(@id)">
+  @panel(Messages("userExtended.title")){
+
+  <p class="alert alert-success" ng-show="success">@Messages("userExtended.success")</p>
+
+  <form method="POST" ng-submit="update()">
+    
+    @wrapper_complete("firstName")(input("firstName"))
+    @wrapper_complete("lastName")(input("lastName"))
+    @wrapper_complete("phone")(input("phone"))
+
+    <button type="submit" class="btn btn-primary">@glyph("check", "fa")</button>
+  </form>
+  }
+</div>

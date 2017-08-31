@@ -1,0 +1,55 @@
+@import views.html.common_components.form_components._
+@(id: Long, keyy: String)(implicit messages: Messages)
+
+@landing_page.site_components.wrapper(16, Seq(), Seq("js/app/modalService.js"), Seq("modal","ui.bootstrap")){
+    <section class="pageheader account-header light-bg">
+      <div class="container">
+
+          <hgroup>
+              <h1 class="header-headline">Forgot your password? Change it here.</h1>
+               
+          <h3 class="header-headline"></h3>
+          </hgroup>
+
+        </div>
+    </section>
+
+<section class="account-email container" ng-controller="loginCtrl" ng-init="initEmail(@id, '@keyy')">
+	
+	<form id="accountdetails-email" class="form-horizontal">
+    <fieldset>
+      <div class="form-annotation width-sm-10">
+        The email address that you are changing the password for: 
+        <p ng-if="value.email">{{value.email}}</p>
+		  <p ng-if="emailError">Loading error. Please request a new password request email.</p>
+      </div>
+    </fieldset>
+  </form>
+</section>
+
+<section class="account-password container" ng-controller="loginCtrl">
+  <form id="accountdetails-pwd" class="form-horizontal" ng-submit="updatePassUpdate(@id, '@keyy')">
+    <fieldset>
+      <div class="form-group">
+        <div class="form-annotation col-sm-10">
+          Please enter your new password. A safe password is at least 8 characters long and contains a special character (e.g. "&commat;" or "&midast;").
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-ms-3">
+          @wrapper_error("new.new1")(input("new.new1", Seq('type -> "password")))
+        </div>
+        <div class="col-ms-3">
+          @wrapper_error("new.new2")(input("new.new2", Seq('type -> "password")))
+        </div>
+        <div class="col-ms-4">
+          <button class="btn btn-primary">Change password</button>
+        </div>
+      </div>
+      <div ng-show="error.error =='error.password.mustMatch'" class="alert alert-danger width-sm-10">These entries do not match.</div>
+		<div ng-show="success" class="alert alert-success width-sm-10">Password changed successfully. You can now login with your updated password.</div>
+    </fieldset>
+  </form>
+</section>
+@common_components.js(routes.Assets.at("js/app/login/loginCtrl.js").url)
+}

@@ -1,0 +1,17 @@
+@(title: Long,
+css_files:   Seq[String]= Seq(),
+js_files:    Seq[String]= Seq(),
+ang_modules: Seq[String] = Seq())(content: Html)
+
+<!DOCTYPE html>
+<html>
+  @head(title, css_files, js_files, ang_modules)
+    
+  <body ng-app="myApp">
+
+    @content
+    
+	@jsInclude()
+    
+  </body>
+</html>

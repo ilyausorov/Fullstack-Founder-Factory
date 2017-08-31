@@ -1,0 +1,35 @@
+@()(implicit messages: Messages)
+
+@apply_page.site_components.wrapper(2){
+
+<section class="newreference-header"></section>
+<section class="newreference-intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-centered" >
+        <div class="newreference-intro__text">
+			<p>Hey there, Ilya here, I'm <span style="font-size: 2.8rem;">super psyched</span> to hear that you're interested in applying for the <b>next session</b> of the <b>@utilities.Constants.name.</b></p>
+			<p>Here’s what to expect in this application:</p>
+			<ul>
+				<li>The reason for this application is for me to <b>get to know you</b> and <b>your motivations</b> for wanting to join the @utilities.Constants.name program.</li>
+				<li>Rest assured that the <b>information you provide will be kept strictly confidential</b> and will not be shared with anyone.</li>
+				<li>Try not to skip questions. While no questions are mandatory (except your name and email address), your application will be much stronger if you try to <b>answer all questions.</b></li>
+				<li>Please <b>finish the application in one sitting.</b> It should take you about 10-15 minutes. If you close out of the application or refresh the page before you're done, you will have to start again.</li>
+				<li>I guarentee you a <b>response to your application within 24 hours</b> of you completing it.</li>
+			</ul>	  
+			<h2 class="text-right"><b>Let's get started!</b></h2>
+		</div>
+        <div class="row">
+          <div class="col-xs-5">
+            <a href="/#" class="btn btn-empty-secondary">Back</a>
+          </div>
+          <div class="col-xs-7 text-right">
+            <a href="@routes.ApplyCtrl.application()" class="btn btn-primary">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+}

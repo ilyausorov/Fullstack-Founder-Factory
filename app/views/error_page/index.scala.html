@@ -1,0 +1,25 @@
+@(msg: String)
+@landing_page.site_components.wrapperMin(2){
+ <body class="light-bg" ontouchstart="" onmouseover="">
+
+  <section class="main-404">
+      <div class="container">
+        <div class="row">
+          <div class="col-ms-6" style="margin-bottom: 4rem;">
+            <h1>Oh no! 404!</h1>
+            <p class="intro" style="margin-bottom: 4rem;">
+              There's nothing here? Looks like we've got some 'splaining to do.
+              If you think this is a serious problem, let us know. <br>Either way, we'll check it out soon.
+            </p>
+            <p><strong>Why not go to one of these places instead?</strong></p>
+            <p><a href="@routes.PublicCtrl.index">Landing Page</a></p> 
+		    <p><a href="@routes.PublicCtrl.faqHtml">FAQs</a></p>
+          </div>
+          <div class="col-ms-5 col-ms-offset-1">
+            <img class="fourohfour-illustration" src="@routes.Assets.at("../assets/img/public/dc-404.svg")" />
+          </div>
+        </div>
+      </div>
+    </section>
+</body>
+}

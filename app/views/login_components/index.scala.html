@@ -1,0 +1,62 @@
+@()(implicit messages: play.api.i18n.Messages)
+
+
+@admin_dashboard.site_components.wrapperMin(100, Seq(), Seq(), Seq()){
+
+<div class="gray-bg">
+
+  <div class="loginColumns animated fadeInDown">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="font-bold">Restricted page. Go away. Kidding, we love you. But seriously, go away.</h2>
+
+        <p>
+         Or you can log in. No funny business though. We're watching you.
+        </p>
+
+        <p>
+
+        </p>
+      </div>
+
+      <div class="col-md-6">
+        <div class="ibox-content" ng-controller="loginCtrl" ng-init="init('@routes.AdminCtrl.index')">
+          <form class="m-t" role="form" method="post" ng-submit="update()">
+            <div class="alert alert-danger" ng-if="error">The credentials you entered are wrong</div>
+
+            <div class="form-group">
+                <input ng-model="value.username" name="username" type="email" class="form-control" placeholder="Email" required="">
+            </div>
+            <div class="form-group">
+                <input ng-model="value.password" name="password" type="password" class="form-control" placeholder="Password" required="">
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+            @*<a href="#">
+                <small>Forgot password?</small>
+            </a>
+
+            <p class="text-muted text-center">
+                <small>Do not have an account?</small>
+            </p>
+            <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>
+          </form>
+          <p class="m-t">
+            <small>orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo metus et ipsum elementum, sed ultricies arcu tincidunt. Suspendisse mattis lectus  &copy; @utilities.Date.year()</small>
+          </p>*@
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div class="col-md-6">
+        Copyright @utilities.Constants.name
+      </div>
+      <div class="col-md-6 text-right">
+        <small>&copy; @utilities.Date.year()</small>
+      </div>
+    </div>
+  </div>
+</div>
+@common_components.js(routes.Assets.at("js/app/login/loginCtrl.js").url)
+}

@@ -1,0 +1,71 @@
+@(id: Option[Long] = None)(implicit messages: play.api.i18n.Messages, request: RequestHeader)
+
+@import common_components.form_components._
+@import common_components._
+
+@admin_dashboard.site_components.wrapper(103,
+  Seq(),
+  Seq(
+    "js/app/admin/user/service.js",
+    "js/app/admin/company/service.js",
+    "js/app/admin/userCompany/service.js",
+    "js/app/admin/userExtended/service.js"
+  ),
+  Seq("user", "company", "userCompany", "userExtended")
+){
+
+
+@id.map{iid=>
+<div class="row" ng-controller="userEditCtrl" ng-init="init(@id)">
+
+  <div class="col-md-6">
+  @widgets.secret()
+  </div>
+
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12">
+        @widgets.permission() 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        @widgets.password(iid) 
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+  @widgets.userExt(iid)
+  </div>
+
+  <div class="col-md-6">
+  @widgets.pic(iid, models.UserPic.lastId(iid), "user.pic.title", routes.UserPicCtrl.serve(_, iid), routes.UserPicCtrl.delete(_, iid), routes.UserPicCtrl.insert(iid, 1))
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+  @admin_dashboard.user.widgets.file(iid, routes.UserFileCtrl.serve(iid))
+  </div>
+</div>
+}
+
+<div class="row">
+  <div class="col-md-12">
+    <a href="@routes.UserCtrl.index" class="btn btn-default">@common_components.glyph("arrow-left")</a>
+  </div>
+</div>
+
+
+
+@id.map{iid =>
+  @js(routes.Assets.at("js/app/admin/user/editCtrl.js").url)
+  @js(routes.Assets.at("js/app/admin/user/passwordCtrl.js").url)
+  @js(routes.Assets.at("js/app/admin/userExtended/userExtendedEditCtrl.js").url)
+  @js(routes.Assets.at("js/app/admin/user/fileEditCtrl.js").url)
+}
+}

@@ -1,0 +1,44 @@
+@()(implicit messages: Messages, flash: Flash, request: RequestHeader)
+
+@import views.html.common_components.form_components._
+
+@landing_page.site_components.wrapper(86, Seq(), Seq("js/app/modalService.js"), Seq("modal","ui.bootstrap")){
+@header()
+
+<div class="emaillogin col-sm-8 col-sm-offset-2">
+<div ng-controller="loginCtrl" ng-init="init('@routes.PublicCtrl.index()')">
+
+  <form ng-show="!success" class="form-horizontal">
+    <fieldset>
+      <h3 class="centered col-sm-12">Please enter your email address and the password provided to login</h3>
+
+      <div class="col-sm-12" ng-class="{'alert alert-danger': error['']}" role="alert" >
+        <div class="col-sm-6">
+          @wrapper_error("username")(input("username"))
+          <label class="control-label" for="textinput"></label>
+        </div>
+
+        <div class="col-sm-6">
+          @wrapper_error("password")(input("password", Seq('type-> "password")))
+          <label class="control-label" for="textinput"></label>
+        </div>
+		  <div class="col-sm-11 col-sm-offset-1 text-right" style="margin-top: -15px;"><p ng-if="error['']">Incorrect username or password. Please try again.</p></div>
+		  <div class="col-sm-11 col-sm-offset-1 text-right" style="margin-top: -15px;"><p ng-if="error['NIC']">{{error['NIC']}}</p></div>
+      </div>
+
+      
+        <div class="col-sm-12">
+          <div class="col-sm-6  forgetpassbutton">
+			<a ng-click="passwordReset()" class="btn btn-primary">Reset your password?</a>
+			  </div>
+			<div class="col-sm-6 text-right signinbutton2">
+			<a ng-click="update()" class="btn btn-primary">Sign in</a>
+			</div>
+          </div>
+        
+	  </fieldset>
+	</form>
+		</div>
+	</div>
+
+       }

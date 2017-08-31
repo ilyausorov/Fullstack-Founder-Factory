@@ -1,0 +1,9 @@
+@*
+	allows fast integration of js files
+	file: path to resource
+	r: if true, will act assuming the file is internal and in the public folder otherwise absolute pah
+
+	match resource: http://stackoverflow.com/questions/9748258/match-case-in-scala-template-doesnt-work-in-play2
+*@
+@(filepath: String)
+<script	type="text/javascript" src="@filepath"></script>

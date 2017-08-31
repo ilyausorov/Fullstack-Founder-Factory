@@ -1,0 +1,11 @@
+@()(implicit flash: Flash, messages: play.api.i18n.Messages)
+
+@flash.get("success").map{a =>
+<div class="alert alert-success">@Messages(a)</div>
+}
+@flash.get("error").map{a =>
+<div class="alert alert-danger">@Messages(a)</div>
+}
+@flash.get("warning").map{a =>
+<div class="alert alert-warning">@Messages(a)</div>
+}

@@ -1,0 +1,13 @@
+@(title_id: Long,
+css_files:   Seq[String]= Seq(),
+js_files:    Seq[String]= Seq(),
+ang_modules: Seq[String] = Seq())(content: Html)(implicit messages: Messages)
+
+@wrapperMin(2, css_files, js_files, ang_modules){
+
+@navbar(title_id)
+@content
+
+@modal()
+
+}

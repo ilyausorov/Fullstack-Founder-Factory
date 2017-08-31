@@ -1,0 +1,9 @@
+@import common_components._
+
+@()
+
+@List(
+  "js/app/login/signupCtrl.js",
+  "js/app/login/loginCtrl.js",
+  "js/ui-bootstrap.min.js"
+).map(x => js(routes.Assets.at(x).url))

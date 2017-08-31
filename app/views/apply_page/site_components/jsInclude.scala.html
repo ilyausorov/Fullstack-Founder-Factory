@@ -1,0 +1,7 @@
+@import common_components._
+
+@()
+
+@List(
+  "js/ui-bootstrap.min.js"
+).map(x => js(routes.Assets.at(x).url))

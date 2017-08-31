@@ -1,0 +1,1 @@
+create table `newsletter` (`id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,`email` varchar(254) NOT NULL,`date_added` TIMESTAMP NOT NULL, `status` INTEGER NOT NULL, `keyy` VARCHAR(256) NOT NULL);

@@ -1,0 +1,9 @@
+@(name: String, submit: String)(input: Html)
+<form ng-submit="@submit">
+<div class = "input-group">
+	@input
+	<span class="input-group-btn">
+	<button type="submit" class="btn btn-primary">@common_components.glyph("ok")</button>
+	</span>
+</div>
+</form>

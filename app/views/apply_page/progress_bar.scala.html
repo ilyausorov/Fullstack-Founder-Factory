@@ -1,0 +1,20 @@
+@()
+
+<section class="newreference-progress">
+    <div class="container">
+        <div class="row">
+           <div class="col-md-8 col-centered" >
+                <ul class="progress-steps list-unstyled">
+               
+                  <li ng-repeat="item in application_headers" ng-if="item.collection_id == 'application'" ng-class="{'active': step >= item.step}">
+                    <div class="progress-steps__title">{{item.name}}</div>
+                    <div class="progress-steps__meter">
+                      <a href="" class="progress-steps__icon" ng-class="{'(last)': step == maxstep}"></a>
+                    </div>
+                  </li>
+                
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

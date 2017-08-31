@@ -1,0 +1,22 @@
+@(id: Option[Long] = None)(implicit messages: play.api.i18n.Messages)
+
+@import common_components._
+@import views.html.common_components.form_components._
+
+<div ng-controller="companyEditCtrl" @id.map{iid => ng-init="init(@iid)"}>
+
+@panel(Messages("company.detail.title")){
+  <p>@Messages("company.basic.description")</p>
+
+  <p ng-if="success" class="alert alert-success">@Messages("company.success")</p>
+
+  <form class="form-horizontal"  role="form" ng-submit="update()">
+
+  @wrapper_complete("name", Seq('label -> "company"))(input("name", Seq('label -> "company")))
+  @wrapper_complete("domain")(input("domain"))
+
+  <input type="submit" class="btn btn-primary">
+  <a href="@routes.CompanyCtrl.index" class="btn btn-default">@glyph("list", "fa") @Messages("back")</a>
+  </form>
+}
+</div>

@@ -1,0 +1,29 @@
+@(page_id: Long)
+
+@*
+* Template part:
+* Navbar for public Pages
+*@
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-loggedout" role="navigation">
+	<div class="container-fluid past-main" ng-controller="loginCtrl" id="navbarmain">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/#"></a>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar">
+			<ul class="nav no-list-style navbar-nav navbar__menu">
+				<li><a class="reg-link close-navbar" href="/#anchorPitch">About</a></li>
+				<li><a class="reg-link close-navbar" href="/#anchorProgram" >Program</a></li>
+				<li><a class="reg-link" href="@routes.PublicCtrl.faqHtml" >FAQs</a></li>
+				<li><a class="reg-link" href="" ng-click="logincheck()">Sign in</a></li>
+				<li><a class="signup-link" href="@routes.PublicCtrl.apply">Apply</a></li>
+			</ul>
+		</div>	  
+	</div>
+</nav>

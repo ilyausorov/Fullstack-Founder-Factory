@@ -1,0 +1,9 @@
+@(text: String)(implicit messages: Messages)
+<div class="alert dc-notification dc-notification--hasbutton alert-dismissible" role="alert">
+  <div class="row">
+    <div class="col-ms-9">@text</div>
+      <div class="col-ms-3 dc-notification__btncontainer">
+      <button class="btn btn-empty-primary" data-dismiss="alert" aria-label="Close">@Messages("notification.ok")</button>
+    </div>
+  </div>
+</div>

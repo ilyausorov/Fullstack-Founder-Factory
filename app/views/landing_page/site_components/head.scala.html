@@ -1,0 +1,32 @@
+@(title: Long,
+css_files:   Seq[String] = Seq(),
+js_files:    Seq[String] = Seq(),
+ang_modules: Seq[String] = Seq())
+
+@import common_components._
+
+<head>
+  <title>@utilities.Constants.name</title>
+  @icon()
+  @meta()
+
+  @{(Seq(
+    "css/landingpage_style.css"
+  )++css_files).map{a =>
+    Html(css(routes.Assets.at(a).url)+"\n")
+  }}	
+	
+@js(routes.Application.jsRoutes("d").url)
+	
+  @{(Seq(
+    "js/jquery.min.js",
+	"js/bootstrap.min.js",
+    "js/scripts.js",
+    "js/angular.min.js"
+  )++js_files).map(x => js(routes.Assets.at(x).url))}
+		
+<script type="text/javascript">
+    var app = angular.module('myApp', [@Html((ang_modules).map("'"+_+"'").mkString(","))])
+</script>
+
+</head>

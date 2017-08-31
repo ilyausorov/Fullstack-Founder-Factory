@@ -1,0 +1,2 @@
+@(key: String, array: String, attribute: String = "name", key_array: String = "id")
+<span ng-repeat="i in @array | filter:{@key_array: @key}:true">{{i.@attribute}}</span>

@@ -1,0 +1,22 @@
+@()(implicit messages: play.api.i18n.Messages)
+
+@import common_components._
+@import common_components.form_components._
+
+<div ng-controller="UserCompanyCtrl">
+@panel(Messages("user.company.title")){
+  <ul class="list">
+    <li ng-repeat="item in values" >
+      {{item.role}} - @common_components.multi("item.company_id", "companies")
+      <a class="btn btn-danger btn-xs" ng-click="remove($index)">@glyph("remove")</a>
+    </li>
+  </ul>
+
+  <p><button ng-show="!add" class="btn btn-sm btn-primary" ng-click="add=true">@glyph("plus")</button></p>
+  <form ng-show="add" ng-submit="update()" class="form-inline">
+    @wrapper("role")(input("role"))
+    @wrapper("company_id")(select("company_id", "companies"))
+    <input type="submit" class="btn btn-primary" value="@Messages("update")">
+  </form>
+}
+</div>

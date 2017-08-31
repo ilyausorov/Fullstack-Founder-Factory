@@ -1,0 +1,33 @@
+@(id: Long, key: String, username: String = "", name: String)
+
+@email_templates.layout.headInline()
+
+<br>
+Hi @name,
+<br><br>
+
+Please confirm your email address on @utilities.Constants.name.
+<br><br>
+
+<center>
+_________________
+<br><br>
+<a href="@(utilities.Constants.url+routes.LoginCtrl.emailConfirm(id, key))">
+<b>Confirm email address</b>
+</a>
+<br>
+_________________
+</center>
+
+
+<br>
+
+If you didn't make this request, please let us know by responding to this message.
+<br><br>
+Thanks,
+<br>
+@utilities.Constants.name
+<br>
+<hr>
+
+@email_templates.layout.footerInline()

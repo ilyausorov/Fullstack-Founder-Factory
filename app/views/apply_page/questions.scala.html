@@ -1,0 +1,177 @@
+@import common_components.form_components._
+@import views.html.common_components._
+
+@()(implicit messages: play.api.i18n.Messages)
+
+<div class="row">
+	<div class="col-md-8 col-centered">
+		<form ng-submit="update()"> 
+			<span ng-repeat="item in application_headers" ng-if="item.step == step && item.collection_id == 'application'">@apply_page.site_components.pageheader("step", "maxstep", "{{item.label}}")</span>
+			<section class="newreference-form">
+				<div class="form-horizontal"> <span ng-repeat="item in questions | orderBy:'question_order'" ng-show="item.header == step">
+		   		<fieldset>	
+					<div class="fieldset-titling" >{{item.question}}</div>
+					<div class="form-annotation" ng-show="item.description">{{item.description}}</div>
+					
+					<span ng-if="item.question_type == 1">
+					 <div class="form-group">
+              			<div class="col-ms-12">
+                			<textarea class="form-control" placeholder="Type here." name="" ng-model="value.intQs[item.id]"> </textarea>
+              			</div>
+            		</div>		
+					</span> 
+					
+					<span ng-if="item.question_type == 2">
+						<div class="form-group radiogroup relationscale" style="margin-bottom: 0px;">
+							<label class="col-ms-3 control-label scale" for="radios" style="padding-top: 5px;"><span ng-repeat="i in item.choices" ng-if="i.choice_value == 1">{{i.choice_text}}</span></label>
+						<div class="col-ms-6">
+							<div class="radiogroup__wrapper"> <label ng-repeat="i in item.choices" class="radio-inline has-error" for="{{item.id}}">
+										<input type="radio"  name="{{item.question}}" id="{{item.id}}" ng-value="i.choice_value" ng-model="value.intQs[item.id].val">
+									</label> </div>
+						</div> <label class="col-ms-3 control-label scale rightmobile" for="radios" style="padding-top: 5px;"><span ng-repeat="i in item.choices" ng-if="i.choice_value == 5">{{i.choice_text}}</span></label> </div>
+					</span> 
+					
+					<span ng-if="item.question_type == 3">
+					<div class="form-group radiogroup">
+                  		<div class="col-ms-10">
+                    		<div class="radio" ng-repeat="i in item.choices">
+                      			<label><input type="radio" name="" ng-model="value.intQs[item.id].val" ng-value="i.choice_value">{{i.choice_text}}</label>
+                      			<input ng-if="$index == item.choices.length - 1" ng-disabled="value.intQs[item.id].val != item.choices.length" class="text form-control form-control--inline width-8" ng-model="value.intQs[item.id].choice_text" placeholder="Describe situation"/>
+                    		</div>
+                  		</div>
+              		</div>
+						
+					</span> <span ng-if="item.question_type == 4">
+						 <div class="form-group">
+							 <div class="col-ms-3">
+								 <select name="month" class="form-control" ng-options="item.id as item.name for item in months" ng-model="value.intQs[item.id].val" ng-change="value.intQs[item.id].choice_text='month'"></select>
+							</div>
+							<div class="col-ms-3">
+								<select name="year" class="form-control" ng-options="item.choice_value as item.choice_value for item in item.choices | orderBy: choice_value: true | filter:{choice_text:'year'}" ng-model="value.intQs[item.id].val2" ng-change="value.intQs[item.id].choice_text2='year'"></select>
+							</div>
+						</div>		
+					</span> 
+					
+					<span ng-if="item.question_type == 5">
+						<div class="form-group radiogroup">
+							<div class="col-ms-10">
+								<div class="radio" ng-repeat="i in item.choices"><label><input type="radio" ng-model="value.intQs[item.id].val" ng-value="i.choice_value">{{i.choice_text}}</label></div>
+							</div>
+						</div>		
+					</span> 
+					
+					<span ng-if="item.question_type == 6">
+						<div class="form-group-flexible">
+							<div class="form-group" ng-repeat="skill in skills">
+							<div class="col-ms-5">
+								<input class="form-control" type="text" ng-model="skill.label" placeholder="e.g. Microsoft Office"/>
+							</div>
+							<div class="col-ms-5">
+								@select("level", "leveScale", Seq('prefix -> "skill"))				
+							</div>
+							<div class="col-ms-2">
+								<a class="btn-delete-small" ng-click="deleteSkill($index)">&times;</a>
+							</div>
+							</div>
+						</div>
+						<div class="flexible-add">
+							<a class="btn btn-primary" ng-click="addSkill()">+ Add skill</a>
+						</div>	
+					</span> 
+					
+					<span ng-if="item.question_type == 7">
+					   <div class="form-group checkbox-list checkbox-list--pills">
+						   <div class="col-ms-12 checkbox-flowgroup__wrapper" >
+							<label class="pill-clickable" ng-class="{'disabled': disabledcount>=3 && !value.intQs[item.id].val[i.choice_value], 'checked': value.intQs[item.id].val[i.choice_value]}" ng-repeat="i in item.choices | orderBy:'uniqueId':true">
+							<input type="checkbox" id="" ng-value="i.choice_value" ng-model="value.intQs[item.id].val[i.choice_value]" ng-click="clickpill()" ng-disabled="disabledcount>=3 && !value.intQs[item.id].val[i.choice_value]">{{i.choice_text}}
+							</label>
+						   </div>
+						</div>		
+					</span> 
+					
+					<span ng-if="item.question_type == 8">
+						<div class="form-group radiogroup">
+							<div class="col-ms-10">
+								<div class="radio" ng-repeat="i in item.choices" >
+								<label><input ng-model="value.intQs[item.id].val" ng-value="i.choice_value" type="radio" name="relation_id">I am/was their {{i.choice_text}}</label>
+								<input ng-if="$index == item.choices.length-1" ng-disabled="value.intQs[item.id].val != item.choices.length" class="text form-control form-control--inline width-8" ng-model="value.intQs[item.id].choice_text" placeholder="Indicate relationship"/>
+
+								</div>
+							</div>
+						</div>			
+					</span> 
+					
+					<span ng-if="item.question_type == 9">
+						<div class="form-group radiogroup">
+							<div class="col-ms-10">
+								<div class="radio" ng-repeat="i in item.choices">
+									<label><input type="radio" name="" ng-model="value.intQs[item.id].val" ng-value="i.choice_value">{{i.choice_text}}</label>
+									<input class="text form-control form-control--inline width-8" ng-model="value.intQs[item.id].choice_text"/>
+								</div>
+							</div>
+						</div>	
+					</span> 
+					
+					<span ng-if="item.question_type == 10">
+						 <div class="form-group radiogroup">
+							<div class="col-ms-10">
+								<div class="checkbox" ng-repeat="i in item.choices"><label><input type="checkbox" ng-model="value.intQs[item.id].val[i.choice_value]" ng-value="i.choice_value" ng-click="clickcheck()" ng-disabled="disabledcountfortwocheckbox>=2 && ! value.intQs[item.id].val[i.choice_value]"> {{i.choice_text}}</label></div>
+							</div>
+						</div>		
+					</span> 
+					
+					<span ng-if="item.question_type == 12">
+						<div class="form-group">
+							<div class="col-ms-12">
+								<input class="form-control" placeholder="Type here." name="" ng-model="value.intQs[item.id]">
+							</div>
+						</div>	
+					</span> 
+					
+					<span ng-if="item.question_type == 13">
+						<div class="form-group checkbox-list checkbox-list--pills">
+							   <div class="col-ms-12 checkbox-flowgroup__wrapper" >
+								  <div class="col-xs-12 nopad">
+									  <div class="nopad col-xs-12" ng-repeat="skill in skills">
+										<label class="pill-clickable checked" style="float: left;"  ng-if="skill.id<10000">
+											<div class="lilx" ng-click="removeSkill(skill)">x</div>
+											<input type="checkbox" id="">
+											{{skill.label}}
+										</label>
+										 <label class="pill-clickable checked" style="float: left; padding-top: 8px; padding-bottom: 8px; color: #641a40; z-index: 5;" ng-if="skill.id>10000">
+											 <div class="lilx" ng-click="removeSkill(skill)">x</div>
+											<input type="text" placeholder="Type here." id="" ng-click="$event.stopPropagation();" ng-model="skill.label" >
+										</label> 
+										<span class="col-ms-7 nopad">
+											<input class="form-control" type="text" ng-model="skill.level" placeholder="Please share a short example of you applying this skill."/>
+										</span> </div>
+										<div class="nopad" ng-repeat="skill in skillslist | orderBy:'sortID':true"> <label class="pill-clickable" ng-class="{'hide': skill.checked, 'disabled': disabledcount2>=7 && !skill.checked}" style="float: left;" ng-if="skill.id>=0 && skill.id < 10000">
+											<input type="checkbox" id="" ng-click="addSkill(skill)" ng-disabled="disabledcount2>=7 && !skill.checked">
+											{{skill.label}}
+										</label> <label class="pill-clickable" ng-class="{'checked': skill.checked, 'disabled': disabledcount2>=7 && !skill.checked}" style="float: left;" ng-if="skill.id==-1">
+											<input type="checkbox" id="" ng-click="addunknownSkill(1)" ng-disabled="disabledcount2>=7 && !skill.checked">
+											{{skill.label}}
+										</label> </div>
+								   </div>
+							</div>
+						</div>
+					</span> 
+					
+					<span ng-if="item.question_type == 15">
+						<div class="form-group radiogroup relationscale hrmobile" style="margin-bottom: 0px;">
+							<label class="col-ms-3 control-label scale" for="radios" style="padding-top: 5px;"><span ng-repeat="i in item.choices" ng-if="i.choice_value == 1">{{i.choice_text}}</span></label>
+								<div class="col-ms-6">
+									<div class="radiogroup__wrapper"> <label ng-repeat="i in item.choices | orderBy: 'choice_value'" class="radio-inline has-error" for="{{item.id}}">
+										<input type="radio"  name="{{item.question}}" id="{{item.id}}" ng-value="i.choice_value" ng-model="value.intQs[item.id].val">
+									</label> </div>
+								</div> <label class="col-ms-3 control-label scale rightmobile" for="radios" style="padding-top: 5px;"><span ng-repeat="i in item.choices" ng-if="i.choice_value == 4">{{i.choice_text}}</span></label> 
+						</div>
+					</span>					
+						</fieldset>
+					</span> 
+					@apply_page.site_components.pagefooter() 
+				</div>
+			</section>
+		</form>
+	</div>
+</div>

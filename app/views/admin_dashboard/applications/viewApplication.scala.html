@@ -1,0 +1,129 @@
+@(id: Long)(implicit messages: play.api.i18n.Messages)
+
+@import common_components._
+
+@admin_dashboard.site_components.wrapper(105, Seq(), Seq("js/app/admin/applications/service.js", "js/app/apply/questionbankService.js","js/toArrayFilter.js"),Seq("applications","questionbank","angular-toArrayFilter")){
+
+@panel(messages("Application Answers")){
+	<div ng-controller="viewApplicationCtrl" ng-init="init(@id)">
+	<h4 class="modal-body__headline">
+		Application started on: @date("application.date_started","short")<span ng-if="application.date_completed"> & Application submitted on: @date("application.date_completed","shortTime").</span>
+		
+		</h4>
+		
+		
+		
+	<span ng-repeat="item in applicationQuestions | toArray: false | orderBy:'question_order'">
+	 <hr ng-if="item.question">
+	  <dl class="row modal-reference__entry">
+		<dt class="col-sm-4 col-sm-offset-1" ng-if="item.question">{{item.question}}</dt>
+	   <dt class="col-sm-4 col-sm-offset-1" ng-if="!item.question">&nbsp;</dt>
+		  
+		  <span ng-if="item.question_type == 1 || item.question_type == 12">
+			  <dd class="col-sm-6">
+				<span ng-repeat="i in applicationAnswers.intQs" ng-if="i.id == item.id">{{i.olabel}}</span>
+				<span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span>
+			</dd>
+			</span>
+
+		  <span ng-if="item.question_type == 2">
+			  <dd class="col-sm-6">
+			  <span ng-if="i.id == item.id"  ng-repeat="i in applicationAnswers.intQs">
+				  <span ng-show="i.val" ng-repeat="z in item.choices | filter:{choice_value: i.val}:true">{{z.choice_text}} ({{i.val}}/5)</span>
+				  </span>
+				 <span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span>
+			  </dd>
+			</span>
+
+		  <span ng-if="item.question_type == 3 || item.question_type == 9">
+			  <dd class="col-sm-6" >
+				<span ng-if="i.id == item.id" ng-repeat="i in applicationAnswers.intQs">
+				  <span ng-show="i.val" ng-repeat="z in item.choices | filter:{choice_value: i.val}:true">{{z.choice_text}} <span ng-if="i.olabel">- {{i.olabel}}</span>
+					</span>
+					</span>
+				   <span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span>
+			  </dd>
+			</span>
+
+		  <span ng-if="item.question_type == 4">
+			  <dd class="col-sm-6">
+			  <span ng-if="i.id == item.id" ng-repeat="i in applicationAnswers.intQs">
+				  <span ng-show="i.val && i.olabel == 'month'" ng-repeat="z in months | filter:{id: i.val}:true">{{z.name}}</span>
+				  <span ng-show="i.val && i.olabel == 'year'" ng-repeat="x in item.choices | filter:{choice_value: i.val}:true">{{x.choice_value}}</span>
+				  </span>
+				   <span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span>
+			  </dd>
+			</span>
+
+		  <span ng-if="item.question_type == 5">
+				<dd class="col-sm-6" >
+				<span ng-if="i.id == item.id" ng-repeat="i in applicationAnswers.intQs">
+				  <span ng-show="i.val" ng-repeat="z in item.choices | filter:{choice_value: i.val}:true">{{z.choice_text}} 
+					</span>
+					</span>
+				<span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span> 
+			  </dd>
+			</span>
+
+		   <span ng-if="item.question_type == 6">
+			  <dd class="col-sm-6">
+				<span ng-if="i.id == item.id" ng-repeat="i in applicationAnswers.intQs">
+				  <span ng-show="i.val" ng-if="i.olabel != null">{{i.olabel}} <span ng-repeat="z in leveScale | filter:{id: i.val}:true">({{z.name}})</span> <br> </span>
+					</span>	
+				<span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span> 			   
+			  </dd>
+			</span>  
+
+		  <span ng-if="item.question_type == 7">
+			  <dd class="col-sm-6">
+				<span ng-if="i.id == item.id"  ng-repeat="i in applicationAnswers.intQs">
+				  <span ng-show="i.val" ng-repeat="z in item.choices | filter:{choice_value: i.val}:true">{{z.choice_text}} <br> </span>
+					</span>	
+				   <span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span>  
+			  </dd>
+			</span>
+
+		  <span ng-if="item.question_type == 8">
+			  <dd class="col-sm-6" >
+				<span ng-if="i.id == item.id" ng-repeat="i in applicationAnswers.intQs">
+				  <span ng-show="i.val" ng-repeat="z in item.choices | filter:{choice_value: i.val}:true">I am/was their {{z.choice_text}}<span ng-if="!z.choice_text && i.olabel">{{i.olabel}}</span><span ng-if="!z.choice_text && !i.olabel">other</span>
+					</span>
+					</span>
+				   <span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span>  
+			  </dd>
+			</span>
+
+		   <span ng-if="item.question_type == 10">
+			  <dd class="col-sm-6">
+				<span ng-if="i.id == item.id"  ng-repeat="i in applicationAnswers.intQs">
+				  <span ng-show="i.val" ng-repeat="z in item.choices | filter:{choice_value: i.val}:true">{{z.choice_text}} <br> </span>
+					</span>		
+				   <span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span> 
+			  </dd>
+		   </span>
+
+		  <span ng-if="item.question_type == 13">
+			 <dd class="col-sm-6">
+				<span ng-if="i.id == item.id" ng-repeat="i in applicationAnswers.intQs">
+				  <span ng-if="i.olabel != null">{{i.olabel}}: {{i.desc}} <br> </span>
+					</span>	
+				  <span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span> 
+			  </dd> 
+		   </span>
+
+		  <span ng-if="item.question_type == 15">
+			  <dd class="col-sm-6" >
+			  <span ng-if="i.id == item.id" ng-repeat="i in applicationAnswers.intQs">
+				  <span ng-show="i.val" ng-repeat="z in item.choices | filter:{choice_value: i.val}:true">{{z.choice_text}} ({{i.val}}/4)</span>
+				  </span>
+				   <span ng-repeat="i in applicationAnswers.intQs | toArray: false | filter:{id: item.id}:true as results"></span>				 
+			  </dd>
+		   </span>
+	  </dl>	
+	</span>	
+  }
+</div>
+
+@js(routes.Assets.at("js/toArrayFilter.js").url)
+@js(routes.Assets.at("js/app/admin/applications/viewCtrl.js").url)
+}

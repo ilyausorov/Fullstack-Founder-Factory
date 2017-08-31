@@ -1,0 +1,14 @@
+@()
+<fieldset>
+	<hr class="divider-light">
+	<div class="form-group submit">
+	  <div class="col-xs-6">
+		<a class="btn btn-empty-secondary" ng-if="step == 1" ng-click="warningback()">Back</a>
+		  <a href="" ng-click="update(0)"  class="btn btn-empty-secondary" ng-if="step > 1">Back</a>
+	  </div>
+	  <div class="col-xs-6 align-right">
+		<a href="" ng-click="update(1)" class="btn btn-primary" ng-if="step<maxstep">Next step</a>
+		  <a href="" ng-click="update(1)" class="btn btn-primary" ng-if="step==maxstep">Finish and submit</a>
+	  </div>
+	</div>
+</fieldset>

@@ -1,0 +1,60 @@
+@**
+ * Generate an HTML input text.
+ *
+ * Example:
+ * {{{
+ * @input("name", args = 'size -> 10, Seq('placeholder -> "Your name"))
+ * }}}
+ *
+ * @param name name of the field.
+ * @param args Set of extra attributes.
+ *@
+@(name: String, args: Seq[(Symbol, Any)] = Seq())(implicit messages: play.api.i18n.Messages)
+@generic()={
+class="form-control input-md"
+ng-model="@{args.toMap.get('prefix).map(_.toString).getOrElse("value")}.@name"
+name="@name"
+@Html(args.toMap.get('ngBlur).map("ng-blur =\""+_.toString+"\"").getOrElse(""))
+placeholder="@Messages(args.toMap.get('label).map(_.toString).getOrElse(name))"
+@if(args.toMap.get('disabled).isDefined){disabled}
+@args.toMap.get('misc).getOrElse("")
+}
+@args.toMap.get('type).map(_.toString).getOrElse("text") match{
+	case "textarea" => {
+		<textarea
+			@generic()
+			rows="@args.toMap.get('rows).map(_.toString).getOrElse(3)">
+		</textarea>
+	}
+	case "date" => {
+		<input
+			type="text"
+			@generic
+			bs-datepicker
+			data-date-format="dd.MM.yyyy"
+			data-autoclose="1"
+		>
+	}
+	case "time" => {
+		<input
+			type="text"
+			@generic()
+			bs-timepicker
+			data-time-format="HH:mm"
+		>
+	}
+	case "numericInput" => {
+		<input type="text"
+		@generic()
+		numeric-input = ""
+		fraction="0"
+		class="form-control"
+		>
+	}
+	case _ => {
+		<input
+			type="@args.toMap.get('type).map(_.toString).getOrElse("text")"
+			@generic()
+		>
+	}
+}

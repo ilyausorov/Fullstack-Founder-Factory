@@ -1,0 +1,14 @@
+@()(implicit messages: Messages)
+
+@apply_page.site_components.wrapper(2, Seq(), Seq("js/app/apply/questionbankService.js","js/app/modalService.js"), Seq("modal","ui.bootstrap","questionbank")){
+
+@landing_page.site_components.loadingmodal()
+
+<div ng-controller="applyCtrl" ng-init="init()" id="top">
+	@progress_bar()
+	<div class="container">
+		@questions()
+	</div>	
+</div>
+@common_components.js(routes.Assets.at("js/app/apply/applyCtrl.js").url)
+}

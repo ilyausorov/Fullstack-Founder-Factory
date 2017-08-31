@@ -1,0 +1,184 @@
+@import common_components._
+@()
+
+<section class="filteringpre">
+	<div id="anchorProgram" class="anchorProgram"></div>
+	<div class="container">
+		<h1>What you should expect</h1>
+		<h4>An intense 8-week journey that takes you from being non-technical to working on your project at every part of the stack: frontend, backend, database and server, alongside several other highly motivated fullstack-founders-in-training. After the program is over, you'll be part of a community of alumni who are all continuing to grow their skills and helping each other in the process.</h4>
+		<div class="col-ms-12">
+			<ul class="dc-tabbara dc-tabbara--wide" role="tablist"> 
+				<li role="presentation" class="active"> 
+					<a role="tab" class="text-left">
+						Curriculum
+					</a> 
+				</li> 
+			 </ul>
+		</div>
+	</div>
+</section>
+
+<section class="filtering">
+	<div class="container">
+		<div class="col-ms-12">
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active">
+					<div class="col-md-8 nopad">
+						<div class="botpad">	
+<!--						-->
+						<div class="titleleft">
+							<h2>Week 1 - The Basics</h2>
+						</div>
+						<ul>
+						@List(
+							("How the internet works, how a computer thinks and how we interact with computers"),
+							("What is the “full stack” & the 4 programming languages you need to know"),
+							("What else is out there? Scripted languages vs. Compiled languages"),
+							("Tools of the trade")
+						).zipWithIndex.map{ case ((text),i) =>
+							<li>@text</li> 	
+						}
+						</ul>
+<!--							-->
+						<div class="titleleft">
+							<h2>Week 2 - Understanding code</h2>
+						</div>
+						<ul>
+						@List(
+							("Coding structures"),
+							("Best practices"),
+							("Conceptual problems that you will need to solve when programming"),
+							("Planning your project")
+						).zipWithIndex.map{ case ((text),i) =>
+							<li>@text</li> 	
+						}
+						</ul>
+<!--							-->
+						<div class="titleleft">
+							<h2>Week 3: Diving into Frontend (HTML + CSS)</h2>
+						</div>
+						<ul>
+						@List(
+							("HTML elements"),
+							("CSS & Classes"),
+							("Advanced frontend concepts")
+						).zipWithIndex.map{ case ((text),i) =>
+							<li>@text</li> 
+						}
+						</ul>	
+<!--							-->
+						<div class="titleleft">
+							<h2>Week 4: Database Design</h2>
+						</div>
+						<ul>
+						@List(
+							("Figuring out your data model"),
+							("Extending your data model & SQL basics")
+						).zipWithIndex.map{ case ((text),i) =>
+							<li>@text</li> 
+						}
+						</ul>	
+<!--							-->
+						<div class="titleleft">
+							<h2>Weeks 5 + 6: Getting into Backend</h2>
+						</div>
+						<ul>
+						@List(
+							("Basic functions"),
+							("Functions involving data"),
+							("Advanced functions & models")
+						).zipWithIndex.map{ case ((text),i) =>
+							<li>@text</li> 
+						}
+						</ul>	
+<!--							-->
+						<div class="titleleft">
+							<h2>Weeks 7 & 8: Javascript</h2>
+						</div>
+						<ul>
+						@List(
+							("Setting up, loading and managing Javscript variables"),
+							("Using Javascript to get data"),
+							("Javascript frameworks and adding them to your project"),
+							("Dynamic behavior in HTML elements")
+						).zipWithIndex.map{ case ((text),i) =>						
+							<li>@text</li> 						
+						}
+						</ul>		
+<!--							-->				
+						<div class="titleleft">
+							<h2>Bonus Time: Setting up your web server</h2>
+						</div>
+						<ul>
+						@List(
+							("Getting you a domain name and web hosting"),
+							("Getting the initial configuration right"),
+							("Deploying your app to your server")
+						).zipWithIndex.map{ case ((text),i) =>						
+							<li>@text</li> 						
+						}
+						</ul>	
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+			
+<div class="container">
+	<div class="col-ms-12">
+		<ul class="dc-tabbara dc-tabbara--wide" role="tablist"> 
+			<li role="presentation" class="active"> 
+				<a role="tab" class="titleright">
+					Format & Schedule
+				</a> 
+			</li> 
+		 </ul>
+	</div>
+</div>
+				
+<section class="filtering altbackground">
+	<div class="container">
+		
+		<div class="col-ms-12">
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active">
+					<div class="col-sm-6 col-sm-offset-6">
+						<div class="botpad">
+						<div class="titleleft">
+							<h2>You need to have the time for:</h2>
+						</div>
+						<ul class="textleft">
+						@List(
+							("3 hour group session once a week in the evening"),
+							("90 minutes of 1-1 instructor time during the week"),
+							("10-12 hours of homework per week")
+						).zipWithIndex.map{ case ((text),i) =>
+							<li>@text</li>
+						}
+						</ul>	
+<!--						-->
+						<div class="titleleft">
+							<h2>Here's what happens every week:</h2>
+						</div>
+						<ul class="textleft">
+						@List(
+							("During the group session, you're introduced to the concept that we're covering that week, we go through examples together, learn about useful learning resources and you have the chance to ask all your questions."),
+							("Then during the 1-1 session with the instructor, you actually work on code as your instructor guides you towards using what you learned to advance your project."),
+							("At home, you apply what you learned to make the majority of advancements on your project. Part of working at home is to also engage in self-guided study that builds off the concepts you learned during the group session.")
+						).zipWithIndex.map{ case ((text),i) =>
+							<li>@text</li><br>
+						}
+						</ul>
+<!--						-->
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<hr style="width: 100%; margin: 0;">

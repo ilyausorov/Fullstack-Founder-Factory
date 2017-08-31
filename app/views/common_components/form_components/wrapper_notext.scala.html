@@ -1,0 +1,7 @@
+@(name: String, args: Seq[(Symbol, Any)])(content: Html)
+<div class="form-group row" ng-class="{'has-error': error.@name.replace(".","_")}">
+	<div class="col-sm-12">
+	@content
+	<span class="help-block" ng-class="{'has-error': error.@name.replace(".","_")}">{{error.@name.replace(".","_")}}</span>
+	</div>
+</div>

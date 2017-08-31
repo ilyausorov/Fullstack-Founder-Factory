@@ -1,0 +1,69 @@
+@()(implicit messages: play.api.i18n.Messages)
+
+@import common_components._
+@import views.html.common_components.multi
+
+@admin_dashboard.site_components.wrapper(102,
+  Seq(),
+  Seq("js/app/admin/user/service.js"),
+  Seq("user")
+){
+
+<div class="row" ng-controller="UserCtrl">
+<div class="col-md-12">
+
+@panel(Messages("user.title")){
+
+<p><a class="btn btn-primary pull-right" href="@routes.UserCtrl.add">@glyph("plus")</a></p>
+
+<div class="col-xs-3 input-group">
+  <span class="input-group-addon" id="basic-addon1">@glyph("search")</span>
+  <input type="input" ng-show="!showSearchP" ng-model="search" class="form-control" ng-change="updateDisplayedData()">
+</div>
+
+<table class="table table-striped table-hover table-responsive" ng-show="valuesF.length">
+<thead>
+  <tr>
+	  <th></th>
+	 @List(
+      ("User ID","id"),
+      ("Email Address", "username"),
+	  ("Name", "firstName")
+    ).zipWithIndex.map{ case ((title, x),i) =>
+            <th>
+              <a ng-class="{'disabled': '@x'!=predicate}" ng-click="sortBy('@x')"><i class="fa" ng-class="{'fa-sort-asc': reverse, 'fa-sort-desc': !reverse}"></i>
+				@Messages(title)</a>
+            </th>
+          } 
+  <th></th>
+  </tr>
+</thead>
+
+<tbody>
+<tr ng-repeat="item in valuesF">
+	<td>
+    <a class="btn" style="padding: 0;" ng-href="@routes.UserCtrl.edit?id={{item.id}}">@glyph("edit")</a>
+    <a class="btn" style="padding: 0;" ng-click="delete(item)">@glyph("remove")</a>
+  </td>
+  <td>{{item.id}}</td>
+  <td>{{item.username}}</td>
+  <td>{{item.firstName}} {{item.lastName}}</td>
+  
+</tr>
+</tbody>
+
+</table>
+
+<div ng-show="!valuesF.length" class="alert alert-info">@Messages("no_numRow")</div>
+
+<div class="text-center">
+  <uib-pagination boundary-links="true" max-size="4" items-per-page="itemsPerPage" total-items="valuesS.length" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+</div>
+
+}
+
+</div>
+
+</div>
+@js(routes.Assets.at("js/app/admin/user/listCtrl.js").url)
+}

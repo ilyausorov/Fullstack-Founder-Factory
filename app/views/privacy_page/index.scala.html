@@ -1,0 +1,11 @@
+@()(implicit messages: Messages,  flash: Flash, request: RequestHeader)
+
+@landing_page.site_components.wrapper(7, Seq(), Seq(), Seq("ui.bootstrap")){
+
+	@header()
+
+	@policy()
+
+	@landing_page.connect()
+
+}

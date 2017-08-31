@@ -1,0 +1,31 @@
+@(id: Option[Long] = None)(implicit messages: play.api.i18n.Messages, request: RequestHeader)
+
+@import common_components._
+
+@admin_dashboard.site_components.wrapper(
+  108,
+  Seq(),
+  Seq(
+    "js/app/admin/company/service.js",
+    "js/app/admin/userCompany/service.js",
+	"js/app/admin/user/service.js"
+  ),
+  Seq("company", "userCompany","user")
+){
+
+<h1>@Messages("company.edit.title")</h1>
+<p>@Messages("company.edit.description")</p>
+
+<div class="row">
+  <div class="col-md-6">
+  @views.html.admin_dashboard.company.form(id)
+  </div>
+
+  @id.map{iid =>
+  <div class="col-md-6">
+  @widgets.users(iid)
+  </div>  
+  }
+</div>
+@js(routes.Assets.at("js/app/admin/company/editCtrl.js").url)
+}

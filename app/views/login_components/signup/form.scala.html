@@ -1,0 +1,85 @@
+@()(implicit messages: play.api.i18n.Messages)
+
+@import views.html.common_components.form_components._
+
+<div ng-controller="signupCtrl" class="removemar" ng-init="init('@routes.LoginCtrl.signup', '@routes.AdminCtrl.index()')">
+  
+	
+  <div class="wrapper" ng-show="success">
+    <p class="alert alert-success" role="alert">@Messages("login.signup.success")</p>
+  </div>
+
+  <div class="wrapper" ng-show="!success">
+    <form ng-submit="update()" class="form-horizontal">
+      <fieldset>
+        <h3 class="centered" style="color: #f14700; margin-top: 0;">Employer Sign Up</h3>
+
+        <div class="form-group">
+
+          <div class="col-sm-12">
+			  
+            @wrapper("login.firstName")(input("login.firstName", Seq('label -> Messages("firstName"))))
+            <label class="control-label" for="textinput"></label>
+			<p ng-if="error.login_firstName" style="margin-top: -15px;">{{error.login_firstName}}</p>
+          </div>
+
+          <div class="col-sm-12">
+			  
+            @wrapper("login.lastName")(input("login.lastName", Seq('label -> Messages("lastName"))))
+            <label class="control-label" for="textinput"></label>
+			  <p ng-if="error.login_lastName" style="margin-top: -15px;">{{error.login_lastName}}</p>
+          </div>
+
+        
+		 <div class="col-sm-12">
+			  
+            @wrapper("login.company")(input("login.company", Seq('label -> Messages("Company name"))))
+            <label class="control-label" for="textinput"></label>
+			  <p ng-if="error.login_company" style="margin-top: -15px;">{{error.login_company}}</p>
+          </div>
+       
+
+          <div class="col-sm-12" ng-class="{'alert alert-danger': error.login}" role="alert" >
+            
+			  <p ng-if="error.login">{{error.login}}</p>
+            @wrapper("login.email")(input("login.email", Seq('label -> Messages("Email (business)"))))
+			  <label class="control-label" for="textinput"></label>
+          </div>
+
+          @*<div class="col-sm-12">
+			  
+            @wrapper("login.phone")(input("login.phone", Seq('label -> Messages("phone"))))
+            <label class="control-label" for="textinput"></label>
+			  <p ng-if="error.login_phone" style="margin-top: -15px;">{{error.login_phone}}</p>
+          </div>*@
+
+          <div class = "col-sm-12" ng-class="{'alert alert-danger': error.passwords}" role="alert" style="padding-left: 0px; padding-right: 0px;">
+<!--            <p style="padding-left: 15px;">{{error.passwords}}</p>-->
+
+            <div class="col-sm-12">
+				
+              @wrapper("passwords.new1")(input("passwords.new1", Seq('label -> Messages("password"), 'type-> "password")))
+              <label class="control-label" for="textinput"></label>
+				<p ng-if="error.passwords_new1" style="margin-top: -15px;">{{error.passwords_new1}}</p>
+            </div>
+
+            @*<div class="col-sm-12">
+				
+              @wrapper("passwords.new2")(input("passwords.new2", Seq('label -> Messages("passwordRepeat"), 'type -> "password")))
+              <label class="control-label" for="textinput"></label>
+				<p ng-if="error.passwords_new2" style="margin-top: -15px;">{{error.passwords_new2}}</p>
+            </div>*@
+          </div>
+        
+         <div class="col-sm-12" style="text-align: center; margin-bottom: 2rem;">
+            <button type="submit" class="btn btn-primary">Start 14-day free trial</button>
+          </div> 
+			 
+          
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+
+</div>

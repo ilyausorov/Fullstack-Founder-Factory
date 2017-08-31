@@ -1,0 +1,16 @@
+@()(implicit messages: play.api.i18n.Messages)
+<div>
+@common_components.panel(Messages("user.permission.title")){
+  <p>@Messages("user.permission.description")</p>
+
+  <span ng-repeat="d in permissions"> <a class="label" ng-class="{'label-success': d.assigned, 'label-default': !d.assigned}" ng-model="d.assigned" ng-click="changePermission($index)">{{d.name}}</a> </span>
+
+	<div style="padding-top: 2rem;">
+	
+	<a class="btn btn-primary" ng-repeat="d in permissions" ng-if="d.id==5 && d.assigned" ng-click="sendciemail()">
+	Send client invite email
+	</a>
+	<p style="margin-top: 2rem;" ng-show="successemail" class="alert alert-success">@Messages("Email sent successfully!")</p>
+	</div>	
+	}
+</div>

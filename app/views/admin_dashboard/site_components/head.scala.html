@@ -1,0 +1,42 @@
+@(title_id:  Long,
+css_files:   Seq[String] = Seq(),
+js_files:    Seq[String] = Seq(),
+ang_modules: Seq[String] = Seq())(implicit messages: Messages)
+
+@import common_components._
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>@messages("page"+title_id+".title")</title>
+
+	@icon()
+
+  @{(Seq(
+		"bower_components/bootstrap/dist/css/bootstrap.min.css",
+		"bower_components/components-font-awesome/css/font-awesome.min.css",
+		"bower_components/simple-line-icons/css/simple-line-icons.css",
+		"bower_components/animate.css/animate.min.css",
+		"ds/style.css"
+	)++css_files).map{a =>
+	  Html(css(routes.Assets.at(a).url)+"\n")
+	}}
+
+  @js(routes.Application.jsRoutes("d").url)
+  @{(Seq(
+    "bower_components/jquery/dist/jquery.min.js",
+    "bower_components/moment/moment.js",
+    "bower_components/angular/angular.min.js",
+    "bower_components/angular-bootstrap/ui-bootstrap.min.js",
+    "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+    "bower_components/skycons-html5/skycons.js",
+    "bower_components/navgoco/src/jquery.navgoco.min.js"
+  )++js_files).map(x => js(routes.Assets.at(x).url))}
+
+	<script>
+		var app = angular.module('myApp', [@Html((Seq("ui.bootstrap")++ang_modules).map("'"+_+"'").mkString(","))])
+	</script>
+	
+</head>

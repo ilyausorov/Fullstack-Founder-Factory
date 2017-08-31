@@ -1,0 +1,87 @@
+@()(implicit messages: play.api.i18n.Messages)
+
+@import common_components._
+
+@admin_dashboard.site_components.wrapper(104,
+  Seq(),
+  Seq("js/app/admin/applications/service.js"),
+  Seq("applications")
+){
+
+<div class="row" ng-controller="applicationsCtrl">
+<div class="col-md-12">
+
+@panel(Messages("applications.title")){
+
+<div class="col-xs-3 input-group">
+  <span class="input-group-addon" id="basic-addon1">@glyph("search")</span>
+  <input type="input" ng-show="!showSearchP" ng-model="search" class="form-control" ng-change="updateDisplayedData()">
+
+</div>
+
+<table class="table table-striped table-hover table-responsive" ng-show="valuesF.length">
+<thead>
+  <tr>
+	  <th></th>
+  @List(
+	  	("id", "Application ID"), 
+	  	("first_name","Name"),
+	  	("email","Email Address"),
+	    ("date_started", "Date Started"),
+	  	("status_id","Status ID"),
+	    ("date_completed", "Date Completed"),
+	  	("read_id", "Read Status")
+	  ).map{case (x, y) =>
+    <th>
+      <a ng-class="{'disabled': '@x'!=predicate}" ng-click="sortBy('@x')"><i class="fa" ng-class="{'fa-sort-asc': reverse, 'fa-sort-desc': !reverse}"></i>
+		@Messages(y)
+		</a>
+      
+    </th>
+  }
+  <th></th>
+  </tr>
+</thead>
+
+<tbody>
+<tr ng-repeat="item in valuesF">
+  <td><a class="btn" style="padding: 0;" ng-click="delete(item)">@glyph("remove")</a>
+	 <a class="btn" style="padding: 0;" ng-href="@routes.ApplyCtrl.adminViewApplication?id={{item.id}}">@glyph("eye-open")</a>
+  </td>
+  <td>{{item.id}}</td>
+  <td>{{item.first_name}} {{item.last_name}}</td>
+  <td>{{item.email}}</td>
+  <td>@date("item.date_started", "medium")</td>
+  <td> @multi("item.status_id","itemStatus")</td>
+  <td ng-if="item.date_completed">@date("item.date_completed", "medium")</td>
+  <td ng-if="!item.date_completed">Not submitted</td>	
+  <td>@multi("item.read_id","readStatus")</td>
+  
+</tr>
+</tbody>
+
+</table>
+
+<div ng-show="!valuesF.length" class="alert alert-info">@Messages("no_numRow")</div>
+
+
+
+<div class="text-center">
+  <pagination boundary-links="true" 
+    max-size="5" 
+    items-per-page="itemsPerPage"
+    total-items="valuesS.length" 
+    ng-model="currentPage" 
+    ng-change="pageChanged()">
+  </pagination>
+</div>
+
+
+
+}
+
+</div>
+
+</div>
+@js(routes.Assets.at("js/app/admin/applications/listCtrl.js").url)
+}

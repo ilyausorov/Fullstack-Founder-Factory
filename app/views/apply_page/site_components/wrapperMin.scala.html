@@ -1,0 +1,16 @@
+@(title_id: Long,
+css_files:   Seq[String]= Seq(),
+js_files:    Seq[String]= Seq(),
+ang_modules: Seq[String] = Seq())(content: Html)(implicit messages: Messages)
+<!DOCTYPE html>
+<html>
+@head(title_id, css_files, js_files, ang_modules)
+
+<body ng-app="myApp" ng-cloak>
+
+@content
+
+@jsInclude()
+
+</body>
+</html>

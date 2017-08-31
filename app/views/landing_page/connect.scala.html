@@ -1,0 +1,32 @@
+@()(implicit messages: Messages, flash: Flash, request: RequestHeader)
+
+<section class="connect" id="newsletter">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<h1>Not ready to apply, but want to stay in touch? <br>Sign up for the newsletter.</h1>
+				<form class="featuredtext newsmar" action="@helper.CSRF(routes.NewsletterCtrl.subscribe)" method="POST">
+					<fieldset>
+						<div class="form-group row newsletter"> <input style="border-radius: 5px;" type="text" class="form-control input-md" id="email" name="email" placeholder="Enter email">
+							<div><button class="btn btn-newsletter"></button></div>
+						</div>
+					</fieldset>
+				</form> @flash.get("success").map{s =>
+				<p class="alert alert-success confirmalert">Thanks for signing up. Please check your email for confirmation.</p> } @flash.get("error").map{s =>
+				<p class="alert alert-danger confirmalert">Please enter a valid email address.</p> } </div>
+		</div>
+		<div class="lineseg col-sm-12"></div>
+		<div class="col-sm-12">
+			<div class="col-sm-12">
+				<div class="col-sm-4 col-md-4 featured2">
+					<div class="col-sm-6 col-md-4 col-lg-3"><a class="bottomtext" href="@routes.PublicCtrl.privacy"><span>Privacy</span></a></div>
+					<div class="col-sm-6 col-md-4 col-lg-3"><a class="bottomtext" href="@routes.PublicCtrl.terms"><span>Terms</span></a></div>
+				</div>
+				<div class="col-sm-5 col-md-4 featured3" style="">
+					
+				</div>
+				<div class="col-sm-3 col-md-4">
+					<p class="featuredtext footerabc featured2">© @utilities.Date.year() @utilities.Constants.name.</p>
+				</div>
+			</div>
+		</div>

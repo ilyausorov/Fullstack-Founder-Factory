@@ -1,0 +1,27 @@
+@(title: String = "", type_id: Int = 1)(content: Html)
+@type_id match{
+	case 1 => {
+		<div class="panel panel-default">
+		@if(title != ""){
+			<div class="panel-heading">
+				<h3 class="panel-title">@title</h3>
+			</div>
+		}
+
+	<div class="panel-body">
+	@content
+	</div>
+</div>
+	}
+
+	case _ => {
+	<div class="ibox float-e-margins">
+		<div class="ibox-title">
+		<h5>@title</h5>
+		</div>
+		<div class="ibox-content">
+		@content
+		</div>
+	</div>
+	}
+}

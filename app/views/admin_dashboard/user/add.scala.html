@@ -1,0 +1,25 @@
+@()(implicit messages: play.api.i18n.Messages, request: RequestHeader)
+
+@import common_components.form_components._
+@import common_components._
+
+@admin_dashboard.site_components.wrapper(103,
+  Seq(),
+  Seq(
+    "js/app/admin/user/service.js",
+    "js/app/admin/company/service.js"
+  ),
+  Seq("user", "company")
+){
+
+<div class="row" ng-controller="userEditCtrl" ng-init="">
+
+  <div class="col-md-6">
+  @widgets.secret("add")
+  </div>
+</div>
+
+<p><a class="btn btn-default" href="@routes.UserCtrl.index">@glyph("arrow-left", "fa")</a></p>
+  @js(routes.Assets.at("js/app/admin/user/editCtrl.js").url)
+
+}

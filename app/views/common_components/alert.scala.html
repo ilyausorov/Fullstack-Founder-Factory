@@ -1,0 +1,8 @@
+@(message: String, alertType: String = "success", ngIf: Option[String]=Some("success"))(implicit messages: play.api.i18n.Messages)
+
+<p class="alert alert-@alertType" @ngIf.map{x => ng-show="@ngIf"}>
+  @Messages(message)
+  <button type="button" class="close" @ngIf.map{x=> ng-click="@x = false"}.getOrElse{data-dismiss="alert"} aria-label="@Messages("close")">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</p>

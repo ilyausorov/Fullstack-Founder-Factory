@@ -1,0 +1,17 @@
+@()(implicit messages: Messages,  flash: Flash, request: RequestHeader)
+@landing_page.site_components.wrapper(8, 
+  Seq(),
+  Seq("js/app/admin/faq/service.js"),
+  Seq("faq","ui.bootstrap")
+){
+
+	@header()
+
+	@items()
+
+	@landing_page.calltoaction()
+
+	@landing_page.connect()
+	
+	@common_components.js(routes.Assets.at("js/app/admin/faq/listCtrl.js").url)
+}

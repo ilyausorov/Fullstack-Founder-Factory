@@ -1,0 +1,10 @@
+@(modalId: String, title: String)(content: Html)(implicit messages: Messages)
+
+<div class="modal fade" tabindex="-1" id="@modalId" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="dc-modal-content">
+      <h4 class="text-center">@title</h4>   
+        @content
+    </div>
+  </div>
+</div> 

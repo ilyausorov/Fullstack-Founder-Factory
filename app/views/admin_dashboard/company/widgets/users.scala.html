@@ -1,0 +1,22 @@
+@(id: Long)(implicit messages: play.api.i18n.Messages)
+
+@import common_components._
+
+<div ng-controller="userCompanyCtrl" ng-init="init(@id)">
+@panel(Messages("company.user.detail.title")){
+<p class="alert alert-info" ng-show="!values.length">@Messages("no_numRow")</p>
+<table class="table table-striped table-hover" ng-show="values.length"> 
+  <tr>
+    <th>@Messages("first_name")</th>
+    <th>@Messages("last_name")</th>
+    <th></th>
+  </tr>
+  <tr ng-repeat="item in values">
+    <td>{{item.user.candidate.firstName}}</td>
+    <td>{{item.user.candidate.lastName}}</td>
+    <td><a ng-href="@routes.UserCtrl.edit?id={{item.user_id}}" class="btn btn-default btn-xs">@glyph("edit")</a></td>
+  </tr>
+</table>
+
+}
+</div>

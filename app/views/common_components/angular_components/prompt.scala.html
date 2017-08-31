@@ -1,0 +1,23 @@
+@()
+<div id="PromptModal" style="z-index: 1051 !important">
+<div class="modal-header text-center">
+	<button type="button" class="close" data-ng-click="PromptOptions.close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+	
+  <h3>{{PromptOptions.headerText}}</h3>
+</div>
+<div class="modal-body text-center">
+  <p>{{PromptOptions.bodyText}}</p>
+<div class="controls col-sm-offset-3 col-sm-6">
+	<input type="text" class="form-control input-md" ng-model="PromptOptions.inputText" name="inputText" placeholder="Enter input here.">
+	</div>
+	
+	</div>
+<div class="modal-footer" style="text-align: center !important;">
+  
+  <button class="btn btn-primary" 
+          data-ng-click="PromptOptions.ok();">{{PromptOptions.actionButtonText}}</button>
+	
+</div>
+	</div>

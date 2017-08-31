@@ -1,0 +1,5 @@
+@(name: String, fa: String)(input: Html)
+<div class="input-group" ng-class="{'has-error': error.@name.replace(".","_")}">
+	<span class="input-group-addon">@views.html.common_components.glyph(fa)</span>
+	@input
+</div>

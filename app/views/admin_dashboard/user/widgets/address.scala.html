@@ -1,0 +1,50 @@
+@(name: String = "UserAddressCtrl")(implicit messages: play.api.i18n.Messages)
+
+@import common_components._
+@import common_components.form_components._
+
+<div ng-controller="@name">
+@panel(Messages("user.address.title")){
+
+<div ng-show="!add">
+  <div ng-if="values.length>0">
+    <table class="table table-striped">
+      <tr>
+        <th>#</th>
+        <th>@Messages("address")</th>
+        <th>@Messages("zip")</th>
+        <th>@Messages("city")</th>
+        <th>@Messages("country")</th>
+        <th></th>
+      </tr>
+
+      <tr ng-repeat="item in values">
+        <td>{{$index+1}}</td>
+        <td>{{item.street}}</td>
+        <td>{{item.zip}}</td>
+        <td>{{item.city}}</td>
+        <td>@common_components.multi("item.country_id", "countries")</td>
+        <td><a ng-click="delete($index)" href="" class="btn btn-danger btn-xs">@glyph("remove")</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="alert alert-info" ng-if="values.length==0">@Messages("no_numRow")</p>
+
+  <p><button class="btn btn-sm btn-primary" ng-click="add=true">@glyph("plus")</button></p>
+</div>
+
+<form ng-show="add" ng-submit="update()" class="form-inline">
+  @List("street", "street2", "street3", "street4").map{a=>
+    @wrapper(a)(input(a))
+  }
+
+  @wrapper("zip")(input("zip", Seq('ngBlur -> "cityFromZip()")))
+  @wrapper("city")(input("city", Seq('ngBlur -> "zipFromCity()")))
+
+  @wrapper("country_id")(select("country_id", "countries"))
+  
+  <input type="submit" class="btn btn-primary" value="@Messages("update")">
+</form>
+}
+</div>

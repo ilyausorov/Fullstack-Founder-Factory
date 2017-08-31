@@ -1,0 +1,27 @@
+@import common_components._
+@(id: Long, serve: play.api.mvc.Call)(implicit messages: play.api.i18n.Messages)
+
+@panel(Messages("file.title")){
+<div ng-controller="fileEditCtrl" class="col-md-12" ng-init="init(@id, '@Date.Pattern.datetime_moment')">
+
+  <p ng-if="files.length==0" class="alert alert-info">@messages("no_numRow")</p>
+  <table ng-if="files.length>0" class="table table-striped">
+    <tr>
+      <th>@messages("name")</th>
+      <th>@messages("contentType")</th>
+      <th>@messages("date")</th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="item in files">
+      <td>{{item.name}}</td>
+      <td>{{item.contentType}}</td>
+      <td>@common_components.date("item.date")</td>
+      <td>
+        <a ng-href="@serve?id={{item.id}}" class="btn btn-default btn-xs">@glyph("download")</a>
+        <a ng-click="delete($index)" class="btn btn-danger btn-xs" role="button">@glyph("remove")</a>
+      </td>
+    </tr>
+  </table>
+
+</div>
+}

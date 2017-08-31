@@ -1,0 +1,22 @@
+@(id: Long, pic_id: Option[Long], title: String, serve: Long => play.api.mvc.Call, delete: Long => play.api.mvc.Call, insert: play.api.mvc.Call)(implicit messages: play.api.i18n.Messages, request: RequestHeader)
+
+@import common_components._
+
+@panel(Messages(title)){
+@pic_id.map{pid => 
+  <img src="@serve(pid)" class="img-responsive img-rounded">
+  <p><a href="@delete(pid)" class="btn btn-danger btn-sm">@glyph("remove")</a></p>
+}.getOrElse{
+<span class="fa-stack fa-lg fa-4x">
+  <i class="fa fa-circle fa-stack-2x text-info"></i>
+  <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+</span>
+}
+
+<hr>
+
+<form action="@helper.CSRF(insert)" method="POST" enctype="multipart/form-data">
+  <input type="file" name="picture">
+  <button type="submit" class="btn btn-primary">@glyph("ok")</button>
+</form>
+}

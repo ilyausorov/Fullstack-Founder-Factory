@@ -1,0 +1,70 @@
+first_name = First name
+last_name = Last name
+firstName = First name
+lastName = Last name
+email = Email
+company = Company
+phone = Phone Number
+password = Password
+password2 = Confirm password
+passwordRepeat = Confirm password
+username = Email
+update = Update
+back = Back
+question = Question
+answer = Answer
+lang_id = Language
+add = Add
+no_numRow = No entry found
+key = Key
+lang = Language
+role = Position
+
+login.signup.success = You have successfully signed up. You can now login.
+login.signin.success = You were successfully signed in. You will be redirected.
+
+error.email.taken = Email address is already taken.
+error.email.not_confirmed = Email address is not confirmed yet.
+
+user.permission.title = Permissions
+user.permission.description = You can assign different permissions to the user depending on your needs
+
+user.password.title = Password
+user.password.description = You can assign a new password to the user
+user.password.regenerate = Generate password
+user.password.success = The password was changed successfully
+
+user.title=User List
+user.pic.title = Profile Picture
+
+user.secret.title = User Account Settings
+user.secret.description = Change emails and other parameters of the account
+user.secret.success = Account settings were updated successfully
+
+company.title = Company List
+company.edit.title = Company Details
+company.detail.title = Company Details
+company.success = Company was successfully saved
+company.user.detail.title = Users Associated
+company_id = Company
+
+applications.title= List of all applications
+
+userExtended.title = Profile
+userExtended.success = Profile was updated successfully
+
+page100.title = Admin Login
+page101.title = Admin Dashboard
+page101.desc = Select an option from the left
+page102.title = User Management
+page102.desc = This page lists all users registered on the platform
+page103.title = User Detail
+page103.desc = Detail of a selected user are shown here
+page104.title = Applications
+page104.desc = List of all the submitted applications
+page105.title = View Application 
+page105.desc = You can see the application answers here
+page107.title = Company Management
+page107.desc = Manage companies
+page108.title = Company Details
+page108.desc = Edit company details
